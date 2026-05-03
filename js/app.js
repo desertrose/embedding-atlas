@@ -170,7 +170,7 @@ const App = {
         await new Promise(resolve => setTimeout(resolve, 50));
 
         try {
-            const umap = new UMAP.UMAP({
+            const umap = new UMAP({
                 nNeighbors: nNeighbors,
                 minDist: minDist,
                 nComponents: nComponents,
