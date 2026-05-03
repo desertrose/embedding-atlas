@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+    #main { flex-direction: column; }
+    #leftPanel {
+        width: 100%;
+        min-width: unset;
+        max-height: 50vh;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+    #viewport { flex: 1; min-height: 50vh; }
+    #header h1 { font-size: 1rem; }
+    .subtitle { display: none; }
+    .progress-box { padding: 24px; }
+    .progress-bar { width: 200px; }
+}
+
+@media (max-width: 480px) {
+    #header { padding: 8px 12px; }
+    #leftPanel { padding: 12px; max-height: 40vh; }
+    .panel-section { padding: 12px; }
+    .search-row { flex-direction: column; }
+    .export-btns { flex-direction: column; }
+}
