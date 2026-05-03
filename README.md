@@ -1,15 +1,8 @@
-# embedding-atlas
-# =============================================
-# README.md
-# =============================================
-cat > README.md << 'README'
 # 🧬 Embedding Atlas
 
 An open-source, browser-based 3D embedding visualization tool inspired by [Apple's Embedding Atlas](https://apple.github.io/embedding-atlas/tool.html).
 
 Upload your CSV or JSON file containing text data with pre-computed embeddings, and explore them in an interactive 3D space powered by UMAP dimensionality reduction.
-
-![Embedding Atlas Screenshot](screenshot.png)
 
 ## ✨ Features
 
@@ -23,10 +16,6 @@ Upload your CSV or JSON file containing text data with pre-computed embeddings, 
 - **Export** — Save your visualization as PNG or SVG
 - **Responsive** — Works on desktop and mobile
 - **100% Client-Side** — No backend, no data leaves your browser
-
-## 🚀 Live Demo
-
-https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
 
 ## 📋 File Format
 
