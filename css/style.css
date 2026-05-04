@@ -170,7 +170,7 @@ html, body {
 .search-row { display: flex; gap: 8px; }
 .search-row input {
     flex: 1;
-    padding: 8px 12px;
+    padding: 8px 4px;
     background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 6px;

@@ -136,3 +136,38 @@ const UI = {
         status.className = 'header-status ' + type;
     }
 };
+
+// ============================================
+// Learn Modal Toggle
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const learnBtn = document.getElementById('learnBtn');
+    const modal = document.getElementById('learnModal');
+    const closeBtn = document.getElementById('closeLearnBtn');
+
+    if (learnBtn && modal && closeBtn) {
+        learnBtn.addEventListener('click', function() {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
