@@ -235,5 +235,21 @@
     <script src="js/export.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
+<script>
+(function() {
+    var btn = document.getElementById("learnBtn");
+    var modal = document.getElementById("learnModal");
+    var close = document.getElementById("closeLearnBtn");
+    if (btn && modal && close) {
+        btn.onclick = function() { modal.style.display = "flex"; document.body.style.overflow = "hidden"; };
+        close.onclick = function() { modal.style.display = "none"; document.body.style.overflow = ""; };
+        modal.onclick = function(e) { if (e.target === modal) { modal.style.display = "none"; document.body.style.overflow = ""; } };
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape" && modal.style.display === "flex") { modal.style.display = "none"; document.body.style.overflow = ""; }
+        });
+    }
+})();
+</script>
+
 </body>
 </html>
