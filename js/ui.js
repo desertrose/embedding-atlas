@@ -185,7 +185,7 @@ const learnContentBody = document.getElementById('learnContentBody');
 const learnBackBtn = document.getElementById('learnBackBtn');
 
 // Topic content database
-const topicContent = { "slm": { "title": "test" } };
+//const topicContent = { "slm": { "title": "test" } };
 
 
 const topicContent = {
