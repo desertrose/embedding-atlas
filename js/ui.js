@@ -228,3 +228,41 @@ const topicContent = {
         ]
     }
 };
+
+
+// Topic click handler
+document.querySelectorAll('.learn-topic').forEach(function(topic) {
+    topic.addEventListener('click', function() {
+        const topicKey = this.getAttribute('data-topic');
+        const content = topicContent[topicKey];
+        if (!content) return;
+
+        // Hide topics, show content
+        document.getElementById('learnTopics').style.display = 'none';
+        document.getElementById('learnContent').style.display = 'block';
+
+        // Build content HTML
+        let html = '<h2>' + content.title + '</h2>';
+        content.sections.forEach(function(section) {
+            html += '<h3>' + section.heading + '</h3>';
+            if (section.text) {
+                html += '<p>' + section.text + '</p>';
+            }
+            if (section.list) {
+                html += '<ul>';
+                section.list.forEach(function(item) {
+                    html += '<li>' + item + '</li>';
+                });
+                html += '</ul>';
+            }
+        });
+
+        document.getElementById('learnContentBody').innerHTML = html;
+    });
+});
+
+// Back button
+document.getElementById('learnBackBtn').addEventListener('click', function() {
+    document.getElementById('learnContent').style.display = 'none';
+    document.getElementById('learnTopics').style.display = 'flex';
+});
