@@ -154,46 +154,46 @@ const learnBackBtn = document.getElementById('learnBackBtn');
 //const topicContent = { "slm": { "title": "test" } };
 
 
-const topicContent = {
-    'slm': {
-        'title': 'About SLM (Small Language Models)',
-        'sections': [
-            { 'heading': 'What is an SLM?', 'text': 'A Small Language Model (SLM) is a compact neural network with fewer than 7 billion parameters. They run on consumer hardware, have faster inference, and use less memory and energy.' },
-            { 'heading': 'Key Characteristics', 'text': 'Typically 100M to 7B parameters. Trained on smaller curated datasets. Can run on laptops and phones. Lower latency and energy usage.' },
-            { 'heading': 'Popular SLMs', 'list': ['Microsoft Phi-3 (3.8B)', 'Google Gemma (2B-7B)', 'Mistral 7B', 'Meta Llama 3.2 (1B-3B)'] },
-            { 'heading': 'Use Cases', 'list': ['On-device chat assistants', 'Code autocomplete', 'Embedded systems', 'Real-time translation', 'Document classification'] }
-        ]
-    },
-    'llm': {
-        'title': 'About LLM (Large Language Models)',
-        'sections': [
-            { 'heading': 'What is an LLM?', 'text': 'A Large Language Model has 7B to 1.7T parameters trained on trillions of tokens. LLMs exhibit emergent abilities like chain-of-thought reasoning.' },
-            { 'heading': 'Scaling Laws', 'text': 'Doubling parameters reduces loss by about 5%. Doubling data reduces loss by about 6.5%. Optimal ratio is about 20 tokens per parameter.' },
-            { 'heading': 'Training Pipeline', 'list': ['Pre-training on internet data', 'Supervised fine-tuning', 'RLHF or DPO for alignment'] },
-            { 'heading': 'Emergent Abilities', 'list': ['In-context learning (>1B params)', 'Chain-of-thought (>10B params)', 'Instruction following (>100B params)', 'Code generation (>175B params)'] },
-            { 'heading': 'Limitations', 'list': ['Hallucination: false information', 'Recency bias: knowledge cutoff', 'High cost: $10M-$100M to train'] }
-        ]
-    },
-    'transformer': {
-        'title': 'About Transformer Architecture',
-        'sections': [
-            { 'heading': 'The 2017 Revolution', 'text': 'Google published "Attention Is All You Need" introducing the Transformer. It became the foundation for GPT, BERT, Llama, and DeepSeek.' },
-            { 'heading': 'Self-Attention', 'text': 'Unlike RNNs that process sequentially, Transformers process all tokens in parallel. Each token computes Query, Key, and Value vectors.' },
-            { 'heading': 'Multi-Head Attention', 'text': 'Multiple attention heads run in parallel, each learning different patterns. Typically 8-128 heads depending on model size.' },
-            { 'heading': 'Key Components', 'list': ['Multi-Head Self-Attention', 'Feed-Forward Networks', 'Layer Normalization', 'Residual Connections', 'Positional Encoding'] }
-        ]
-    },
-    'encoder-decoder': {
-        'title': 'Encoder / Decoder Architecture',
-        'sections': [
-            { 'heading': 'Original Design', 'text': 'The original Transformer used encoder-decoder architecture. The encoder processes input. The decoder generates output.' },
-            { 'heading': 'Encoder', 'text': 'Stacked layers of self-attention + FFN. Reads entire input sequence. BERT is encoder-only.' },
-            { 'heading': 'Decoder', 'text': 'Self-attention + cross-attention + FFN. Generates one token at a time. GPT is decoder-only.' },
-            { 'heading': 'Three Families', 'list': ['Encoder-only (BERT): Understanding tasks', 'Decoder-only (GPT): Generation tasks', 'Encoder-Decoder (T5): Seq2seq tasks'] },
-            { 'heading': 'Why Decoder-Only Won', 'text': 'Simpler to train, scales efficiently, performs well on both understanding and generation.' }
-        ]
-    }
-};
+// const topicContent = {
+//     'slm': {
+//         'title': 'About SLM (Small Language Models)',
+//         'sections': [
+//             { 'heading': 'What is an SLM?', 'text': 'A Small Language Model (SLM) is a compact neural network with fewer than 7 billion parameters. They run on consumer hardware, have faster inference, and use less memory and energy.' },
+//             { 'heading': 'Key Characteristics', 'text': 'Typically 100M to 7B parameters. Trained on smaller curated datasets. Can run on laptops and phones. Lower latency and energy usage.' },
+//             { 'heading': 'Popular SLMs', 'list': ['Microsoft Phi-3 (3.8B)', 'Google Gemma (2B-7B)', 'Mistral 7B', 'Meta Llama 3.2 (1B-3B)'] },
+//             { 'heading': 'Use Cases', 'list': ['On-device chat assistants', 'Code autocomplete', 'Embedded systems', 'Real-time translation', 'Document classification'] }
+//         ]
+//     },
+//     'llm': {
+//         'title': 'About LLM (Large Language Models)',
+//         'sections': [
+//             { 'heading': 'What is an LLM?', 'text': 'A Large Language Model has 7B to 1.7T parameters trained on trillions of tokens. LLMs exhibit emergent abilities like chain-of-thought reasoning.' },
+//             { 'heading': 'Scaling Laws', 'text': 'Doubling parameters reduces loss by about 5%. Doubling data reduces loss by about 6.5%. Optimal ratio is about 20 tokens per parameter.' },
+//             { 'heading': 'Training Pipeline', 'list': ['Pre-training on internet data', 'Supervised fine-tuning', 'RLHF or DPO for alignment'] },
+//             { 'heading': 'Emergent Abilities', 'list': ['In-context learning (>1B params)', 'Chain-of-thought (>10B params)', 'Instruction following (>100B params)', 'Code generation (>175B params)'] },
+//             { 'heading': 'Limitations', 'list': ['Hallucination: false information', 'Recency bias: knowledge cutoff', 'High cost: $10M-$100M to train'] }
+//         ]
+//     },
+//     'transformer': {
+//         'title': 'About Transformer Architecture',
+//         'sections': [
+//             { 'heading': 'The 2017 Revolution', 'text': 'Google published "Attention Is All You Need" introducing the Transformer. It became the foundation for GPT, BERT, Llama, and DeepSeek.' },
+//             { 'heading': 'Self-Attention', 'text': 'Unlike RNNs that process sequentially, Transformers process all tokens in parallel. Each token computes Query, Key, and Value vectors.' },
+//             { 'heading': 'Multi-Head Attention', 'text': 'Multiple attention heads run in parallel, each learning different patterns. Typically 8-128 heads depending on model size.' },
+//             { 'heading': 'Key Components', 'list': ['Multi-Head Self-Attention', 'Feed-Forward Networks', 'Layer Normalization', 'Residual Connections', 'Positional Encoding'] }
+//         ]
+//     },
+//     'encoder-decoder': {
+//         'title': 'Encoder / Decoder Architecture',
+//         'sections': [
+//             { 'heading': 'Original Design', 'text': 'The original Transformer used encoder-decoder architecture. The encoder processes input. The decoder generates output.' },
+//             { 'heading': 'Encoder', 'text': 'Stacked layers of self-attention + FFN. Reads entire input sequence. BERT is encoder-only.' },
+//             { 'heading': 'Decoder', 'text': 'Self-attention + cross-attention + FFN. Generates one token at a time. GPT is decoder-only.' },
+//             { 'heading': 'Three Families', 'list': ['Encoder-only (BERT): Understanding tasks', 'Decoder-only (GPT): Generation tasks', 'Encoder-Decoder (T5): Seq2seq tasks'] },
+//             { 'heading': 'Why Decoder-Only Won', 'text': 'Simpler to train, scales efficiently, performs well on both understanding and generation.' }
+//         ]
+//     }
+// };
 
 
 // Topic click handler
@@ -213,6 +213,9 @@ document.querySelectorAll('.learn-topic').forEach(function(topic) {
             html += '<h3>' + section.heading + '</h3>';
             if (section.text) {
                 html += '<p>' + section.text + '</p>';
+            }
+            if (section.code) {
+                html += '<pre><code>' + section.code + '</code></pre>';
             }
             if (section.list) {
                 html += '<ul>';
@@ -263,6 +266,9 @@ document.querySelectorAll('.learn-topic').forEach(function(topic) {
             html += '<h3>' + section.heading + '</h3>';
             if (section.text) {
                 html += '<p>' + section.text + '</p>';
+            }
+            if (section.code) {
+                html += '<pre><code>' + section.code + '</code></pre>';
             }
             if (section.list) {
                 html += '<ul>';
