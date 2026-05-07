@@ -311,3 +311,56 @@ if (learnBtn && learnPanel && threeContainer) {
         }
     });
 }
+
+// ============================================
+// Topic Content
+// ============================================
+const topicContent = {
+    'slm': {
+        title: 'About SLM (Small Language Models)',
+        sections: [
+            { heading: 'What is an SLM?', text: 'A Small Language Model (SLM) is a compact neural network with fewer than 7 billion parameters. Unlike large language models (LLMs), SLMs are designed for efficiency — they run on consumer hardware, have faster inference times, and require significantly less memory and energy. Think of SLMs as highly trained specialists vs LLMs as generalists.' },
+            { heading: 'Key Characteristics', text: 'SLMs typically have 100 million to 7 billion parameters. They are trained on smaller, curated datasets. They can run on laptops, phones, and edge devices. They use less energy and produce lower latency responses. They are ideal for real-time applications where speed matters more than breadth of knowledge.' },
+            { heading: 'Popular SLMs', list: ['Microsoft Phi-3 (3.8B parameters)', 'Google Gemma 2B-7B', 'Mistral 7B', 'Alibaba Qwen2.5 (0.5B-7B)', 'Meta Llama 3.2 (1B-3B)'] },
+            { heading: 'How SLMs Work', text: 'At their core, SLMs predict the next token given a sequence of previous tokens. The probability of a token sequence is: P(w1, w2, ..., wn) = product of P(wi | w1, w2, ..., wi-1) for i=1 to n. Each conditional probability is computed through token embeddings, multi-head self-attention, and feed-forward layers.' },
+            { heading: 'Example: Running Phi-3 in Python', text: 'Using Microsoft Phi-3 for inference:', code: 'from transformers import AutoModelForCausalLM, AutoTokenizer\nmodel = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")\ntokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")\n\nprompt = "Explain what an embedding is:"\ninputs = tokenizer(prompt, return_tensors="pt")\noutput = model.generate(inputs.input_ids, max_new_tokens=100)\nprint(tokenizer.decode(output[0]))' },
+            { heading: 'SLM vs LLM Tradeoffs', text: 'SLMs use ~2GB RAM and run at 45 tokens/sec on a MacBook. LLMs like GPT-4 need cloud APIs with 1-5 second latency. SLMs cost ~$0.001 per query vs ~$0.03 for LLMs. For 80% of practical use cases, an SLM is sufficient and preferable.' }
+        ]
+    },
+    'llm': {
+        title: 'About LLM (Large Language Models)',
+        sections: [
+            { heading: 'What is an LLM?', text: 'A Large Language Model is a deep neural network with 7 billion to 1.7 trillion parameters, trained on trillions of tokens from the internet. LLMs exhibit emergent abilities — capabilities that appear only at scale, such as chain-of-thought reasoning, in-context learning, and instruction following. These abilities are not explicitly programmed; they emerge from statistical patterns in vast training data.' },
+            { heading: 'Scaling Laws', text: 'Research by Kaplan et al. (2020) and Chinchilla (2022) discovered predictable relationships between model size and performance. Doubling parameters reduces loss by about 5%. Doubling training data reduces loss by about 6.5%. The optimal ratio is approximately 20 training tokens per parameter. This is why GPT-4 (1.7T params) was trained on about 13 trillion tokens.' },
+            { heading: 'Training Pipeline', list: ['Pre-training: Next-token prediction on internet-scale data (3-6 months, 16,000+ GPUs)', 'Supervised fine-tuning (SFT): Learning from human demonstrations', 'RLHF: Reinforcement Learning from Human Feedback', 'DPO: Direct Preference Optimization (modern alternative to RLHF)'] },
+            { heading: 'Training Cost', text: 'Training a state-of-the-art LLM costs $10 million to $100 million. Pre-training alone requires 16,000+ H100 GPUs running for ~90 days. Data collection and cleaning takes months. The total energy consumption is measured in megawatt-hours.' },
+            { heading: 'Emergent Abilities', text: 'Certain abilities only appear above a threshold model size. In-context learning emerges above 1B parameters. Chain-of-thought reasoning emerges above 10B parameters. Instruction following emerges above 100B parameters. Code generation emerges above 175B parameters (GPT-3 scale). These abilities are not trained for directly.' },
+            { heading: 'Example: Using GPT-4 for Code Review', text: 'Practical API usage:', code: 'import openai\nresponse = openai.chat.completions.create(\n    model="gpt-4-turbo",\n    messages=[\n        {"role": "system", "content": "You are an expert code reviewer."},\n        {"role": "user", "content": "Review this Python code:\\n\\ndef fetch(url):\\n    import requests\\n    return requests.get(url).json()"}\n    ],\n    temperature=0.3\n)\nprint(response.choices[0].message.content)' },
+            { heading: 'Limitations', list: ['Hallucination: Models confidently state false information', 'Recency bias: Knowledge cutoff means they dont know recent events', 'Sycophancy: Models tend to agree with users to be helpful', 'Reasoning fragility: Slight rephrasing causes different answers', 'Security risks: Prompt injection and jailbreaking are ongoing challenges'] }
+        ]
+    },
+    'transformer': {
+        title: 'About Transformer Architecture',
+        sections: [
+            { heading: 'The 2017 Revolution', text: 'In 2017, Google researchers published "Attention Is All You Need," introducing the Transformer architecture. This paper revolutionized NLP and became the foundation for virtually every modern language model, including GPT, BERT, Llama, and DeepSeek. It has over 100,000 citations.' },
+            { heading: 'Core Innovation: Self-Attention', text: 'Unlike RNNs that process tokens sequentially, Transformers process all tokens in parallel using self-attention. Each token "attends" to every other token, computing relevance scores. This enables the model to capture long-range dependencies that RNNs struggled with.' },
+            { heading: 'How Self-Attention Works', text: 'For each input token, we compute three vectors: Query (Q), Key (K), and Value (V). The attention score between two tokens is the dot product of their Query and Key vectors, scaled by the square root of the dimension. These scores are normalized via softmax and used to weight the Value vectors. The result: each tokens output is a weighted combination of all tokens.' },
+            { heading: 'Multi-Head Attention', text: 'Instead of one attention mechanism, Transformers use multiple heads running in parallel. Each head learns different relationship patterns — one might focus on syntax, another on semantics, another on positional relationships. Typically 8-128 heads are used depending on model size.' },
+            { heading: 'Positional Encoding', text: 'Since Transformers process all tokens in parallel, position information must be injected explicitly. Original transformers used sinusoidal positional encodings (sine and cosine functions at different frequencies). Modern models like Llama and GPT-4 use Rotary Position Embedding (RoPE) which rotates query and key vectors by position-dependent angles.' },
+            { heading: 'Architecture Components', list: ['Multi-Head Self-Attention: Captures relationships between tokens', 'Feed-Forward Networks (FFN): Processes each position independently', 'Layer Normalization: Stabilizes training', 'Residual Connections: Enables training of very deep networks', 'Positional Encoding: Provides order information'] },
+            { heading: 'Why Transformers Won', text: 'Transformers enabled parallel training (10-100x faster than RNNs), captured long-range dependencies effectively (no vanishing gradient problem), and scaled beautifully with more data and parameters. They became the default architecture for NLP, computer vision (ViT), audio (Whisper), and even reinforcement learning.' }
+        ]
+    },
+    'encoder-decoder': {
+        title: 'Encoder / Decoder Architecture',
+        sections: [
+            { heading: 'The Original Transformer Design', text: 'The original Transformer used an encoder-decoder architecture. The encoder processes the input sequence and produces a rich representation. The decoder generates the output sequence token by token, attending to the encoder representations. This design was inspired by sequence-to-sequence models for translation.' },
+            { heading: 'Encoder', text: 'The encoder consists of stacked layers (typically 6-12). Each layer has two sub-layers: multi-head self-attention and a feed-forward network. The encoder reads the entire input sequence and produces a contextualized representation for each token. BERT is a famous encoder-only model with 340M parameters.' },
+            { heading: 'Decoder', text: 'The decoder also has stacked layers but with an additional cross-attention sub-layer that attends to the encoder output. The decoder is auto-regressive — it generates one token at a time, using previously generated tokens as input. It uses masked self-attention to prevent looking at future tokens. GPT is a decoder-only model.' },
+            { heading: 'Cross-Attention', text: 'The bridge between encoder and decoder. The decoder uses its own internal representation as Query and the encoder output as Key and Value. This allows the decoder to "look at" the input sequence while generating each output token. This is what enables translation: the encoder reads French, the decoder writes English.' },
+            { heading: 'Three Architecture Families', list: ['Encoder-only (BERT): Best for understanding tasks — classification, NER, question answering', 'Decoder-only (GPT): Best for generation — text completion, chat, code generation', 'Encoder-Decoder (T5): Best for sequence-to-sequence tasks — translation, summarization'] },
+            { heading: 'Why Decoder-Only Won', text: 'GPT-style decoder-only models have become dominant because they are simpler to train, scale more efficiently, and perform well on both understanding and generation tasks. The distinction is blurring — modern architectures often blend elements of all three designs.' },
+            { heading: 'Key Insight for This App', text: 'Embedding models (like BGE-small which powers this app) are typically encoder-only. They produce a fixed-size vector for each input — perfect for semantic search and clustering. Decoder-only models generate text. Understanding this distinction helps you choose the right tool for your task.' }
+        ]
+    }
+};
