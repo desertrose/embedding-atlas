@@ -242,6 +242,9 @@ if (learnBtn && learnPanel && threeContainer) {
     // Open learn panel
     learnBtn.addEventListener('click', function() {
         threeContainer.style.display = 'none';
+        // Also hide the canvas directly
+        var canvas = threeContainer.querySelector('canvas');
+        if (canvas) canvas.style.display = 'none';
         learnPanel.style.display = 'block';
         // Show topics, hide content
         learnTopics.style.display = 'flex';
@@ -256,6 +259,9 @@ if (learnBtn && learnPanel && threeContainer) {
     function closeLearnPanel() {
         learnPanel.style.display = 'none';
         threeContainer.style.display = 'block';
+        // Show canvas again
+        var canvas = threeContainer.querySelector('canvas');
+        if (canvas) canvas.style.display = 'block';
     }
 
     // Topic click handler
